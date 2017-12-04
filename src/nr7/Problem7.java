@@ -25,39 +25,36 @@ public class Problem7 {
         double width = input("What is the width of your room?");
         double length = input("What is the length of your room?");
 
-        if(choice == 1) {
+        if (choice == 1) {
             System.out.println("Your room is " + width + " feet by " + length + " feet.");
-            calculateArea("feet", width,length);
-        }
-        else if(choice == 2) {
+            calculateArea("feet", width, length);
+        } else if (choice == 2) {
             System.out.println("Your room is " + width + " meters by " + length + " meters.");
-            calculateArea("meters", width,length);
+            calculateArea("meters", width, length);
         }
     }
 
     public static double input(String label) {
-        System.out.print(label);
 
-        Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
         double d = 0.0;
 
-        try
-        {
-            d = Double.parseDouble(input);
-        }
-        catch(NumberFormatException nfe)
-        {
-            System.out.println("Not a valid number! Please insert a new one.");
-            d = input(label);
-            //iesire fortata din program; daca nu as fi pus linia de deasupra
-//            int i = 1;
-//            System.exit(i);
-        }
+        Scanner scan = new Scanner(System.in);
 
-        while (d <= 0) {           //verific daca nr este negativ sau 0
-            System.out.println("Not a valid number! Please insert a new one.");
-            d = input(label);
+        while (d <= 0) {
+            System.out.print(label);
+
+            String input = scan.nextLine();
+
+            try {
+                d = Double.parseDouble(input);
+                if (d <= 0) {
+                    System.out.println("Not a valid number! Please insert a new one.");
+                }
+
+            } catch (NumberFormatException nfe) {
+                System.out.println("Not a valid number! Please insert a new one.");
+                d = 0;
+            }
         }
 
         return d;
@@ -65,7 +62,7 @@ public class Problem7 {
     }
 
 
-    public static void calculateArea (String s, double a, double b) {
+    public static void calculateArea(String s, double a, double b) {
         double area = a * b;
         double factor = 0.09290304;
         double areaMeters = 0.0;

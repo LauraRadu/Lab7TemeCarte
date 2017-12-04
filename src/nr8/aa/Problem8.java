@@ -55,20 +55,25 @@ public class Problem8 {
     }
 
     public static int insertFromKeyboard (String label) {
-        System.out.print(label);
+
         Scanner scan = new Scanner(System.in);
         int number = 0;
-        try {
-            number = scan.nextInt();
-        }
-        catch (InputMismatchException e) {
-            System.out.println("Invalid number!");
-            number = insertFromKeyboard(label);
-        }
 
-        if(number <= 0) {
-            System.out.println("Invalid number!");
-            number = insertFromKeyboard(label);
+        while(number <= 0) {
+            System.out.print(label);
+
+            try {
+                number = scan.nextInt();
+
+                if(number <= 0) {
+                    System.out.println("Invalid number!");
+                }
+
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Invalid number!");
+               scan.next();      //fara asta, intra in loop infinit si printeaza labelul apoi intra direct in catch
+            }
         }
 
         return  number;

@@ -51,22 +51,24 @@ public class Problem10 {
     }
 
     public static double insertFromKeyboard(String label) {
-        System.out.print(label);
 
         Scanner scan = new Scanner(System.in);
-        double number;
+        double number = -1.0;
 
-        try {
-            number = scan.nextDouble();
-        }
-        catch (InputMismatchException e) {
-            System.out.println("Invalid number!");
-            number = insertFromKeyboard(label);
-        }
+        while(number < 0) {
+            System.out.print(label);
 
-        if(number < 0) {
-            System.out.println("Invalid number!");
-            number = insertFromKeyboard(label);
+            try {
+                number = scan.nextDouble();
+                if(number < 0) {
+                    System.out.println("Invalid number!");
+                }
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Invalid number!");
+                scan.next();
+               
+            }
         }
 
         return  number;
@@ -77,7 +79,7 @@ public class Problem10 {
         double quantity = 1.0;
         int counter = 1;
         double subtotal = price;
-        while (price != 0 || quantity != 0) {
+        while (price != 0 || quantity != 0) {         //stop entering products when entering 0 to both price and quantity
             price = insertFromKeyboard("Enter the price of item " + counter + ": $");
             quantity = insertFromKeyboard("Enter the quantity of item " + counter + ": ");
             subtotal += price;
