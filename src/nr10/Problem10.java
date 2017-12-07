@@ -67,7 +67,7 @@ public class Problem10 {
             catch (InputMismatchException e) {
                 System.out.println("Invalid number!");
                 scan.next();
-               
+
             }
         }
 
